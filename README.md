@@ -5,11 +5,11 @@ CodeIgniter calendar is an improved calendar class. The current class lacks mult
 Currently improved:
 - Better templating
 - Handling multiple events
+- Output per month
 
 Upcoming:
-- Outputting month / week / year formats
-
-## NOTE: This class is still in development and subjected to change a lot. Installing through sparks is not yet available. Also, do not use this class yet till the first version is released.
+- Output per week
+- Output per year
 
 ## Requirements
 1. CodeIgniter 2.0.0+
@@ -38,4 +38,30 @@ After loading, you have this object available:
 
 ```php
 $this->ptcalendar;
+```
+
+Use within your view
+```php
+echo $this->ptcalendar->generate($year, $month, $events);
+```
+
+The events array should look like this. (22 and 6 are the day numbers)
+```php
+array
+  22 => 
+    array
+      0 => 
+        array
+          'name' => string 'name'
+          'link' => string 'link'
+      1 => 
+        array
+          'name' => string 'name'
+          'link' => string 'link'
+  6 => 
+    array
+      0 => 
+        array
+          'name' => string 'name'
+          'link' => string 'link'
 ```

@@ -90,7 +90,7 @@ class ptcalendar {
         $this->_selected_month = $month;
 
         $header = self::generate_header();
-        $body = self::generate_body();
+        $body = self::generate_body($events);
 
 
         $data = array_merge($header, $body);
@@ -109,6 +109,18 @@ class ptcalendar {
         $header['month'] = strftime($this->month_format, mktime(0,0,0,$this->_selected_month,1,0));
         $header['year'] = strftime($this->year_format, mktime(0,0,0,1,1,$this->_selected_year));
 
+        if($this->_selected_month == 12 || $this->_selected_month == 1) {
+            if($this->_selected_month == 12) {
+                $header['next_link'] = site_url('calendar/show/'.($this->_selected_year + 1).'/1');
+                $header['previous_link'] = site_url('calendar/show/'.$this->_selected_year.'/'.($this->_selected_month - 1));
+            } else {
+                $header['next_link'] = site_url('calendar/show/'.$this->_selected_year.'/'.($this->_selected_month + 1));
+                $header['previous_link'] = site_url('calendar/show/'.($this->_selected_year - 1).'/12');
+            }
+        } else {
+            $header['next_link'] = site_url('calendar/show/'.$this->_selected_year.'/'.($this->_selected_month + 1));
+            $header['previous_link'] = site_url('calendar/show/'.$this->_selected_year.'/'.($this->_selected_month - 1));
+        }
 
         // Set the days of the week. Using locale.
         $header['daysofweek'] = array();
@@ -124,7 +136,7 @@ class ptcalendar {
      * Generates the body
      * @return array
      */
-    private function generate_body() {
+    private function generate_body($events = array()) {
         $body = array();
         
         // Determine the total days in the month
@@ -164,6 +176,11 @@ class ptcalendar {
             } else {
                 $body['weeks'][$weekCounter]['days'][$dayCounter]['day'] = '';
             }
+            
+            if($currentDayNumber == date('j', time()) && $this->_selected_month == date('n', time()) && $this->_selected_year == date('Y', time())) {
+                $body['weeks'][$weekCounter]['days'][$dayCounter]['today'] = TRUE;
+            }
+            
             $dayCounter++;
             $currentDayNumber++;
         }
