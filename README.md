@@ -16,6 +16,8 @@ Upcoming:
 
 ## Installing
 
+NOTE: Not yet available on GetSparks
+
 Available via CodeIgniter Sparks. For info about how to install sparks, go here: http://getsparks.org/install
 
 You can then load the spark with this:
