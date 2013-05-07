@@ -54,16 +54,16 @@ array
     array
       0 => 
         array
-          'name' => string 'name'
-          'link' => string 'link'
+          'name' => 'name'
+          'link' => 'link'
       1 => 
         array
-          'name' => string 'name'
-          'link' => string 'link'
+          'name' => 'name'
+          'link' => 'link'
   6 => 
     array
       0 => 
         array
-          'name' => string 'name'
-          'link' => string 'link'
+          'name' => 'name'
+          'link' => 'link'
 ```
