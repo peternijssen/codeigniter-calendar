@@ -144,7 +144,7 @@ class ptcalendar {
 
         // Determine which is the first weekday
         $date = new DateTime($this->_selected_year . "-" . $this->_selected_month . "-01");
-        $date->modify('first day of');
+        $date->modify('first week');
         $startWeekDay = $date->format('w');
 
 
